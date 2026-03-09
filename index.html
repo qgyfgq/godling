@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>新生神明模拟器</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdmirror.com/npm/@mujian/js-sdk@latest/dist/umd/lite.js"></script>
 </head>
 <body>
   <div id="game-container">
@@ -39,6 +40,7 @@
         <div class="stat">
           <span class="stat-label">👥 信徒</span>
           <span id="followers" class="stat-value">10</span>
+          <div id="follower-detail" class="follower-detail"></div>
         </div>
         <div class="stat">
           <span class="stat-label">📅 天数</span>
@@ -75,6 +77,14 @@
       <p id="gameover-text"></p>
       <div id="gameover-stats"></div>
       <button onclick="location.reload()">重新开始</button>
+    </div>
+  </div>
+
+  <!-- 加载遮罩 -->
+  <div id="loading-overlay" class="hidden">
+    <div class="loading-content">
+      <div class="loading-spinner">✦</div>
+      <p class="loading-text">神谕降临中…</p>
     </div>
   </div>
 
