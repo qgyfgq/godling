@@ -1,0 +1,375 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #faf9f6, #f0ead6, #e8e0cc);
+  color: #3a3530;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+#game-container {
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 24px;
+  color: #b8960c;
+  text-shadow: 0 0 12px rgba(184, 150, 12, 0.25);
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* 命名界面 */
+#name-screen {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(184, 150, 12, 0.2);
+  border-radius: 16px;
+  padding: 32px 24px;
+  backdrop-filter: blur(8px);
+}
+
+#name-screen p {
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+  color: #5a5040;
+}
+
+#name-input {
+  width: 70%;
+  padding: 10px 16px;
+  border: 2px solid #c9a84c;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.6);
+  color: #8b7320;
+  font-size: 1.1rem;
+  text-align: center;
+  outline: none;
+  margin-bottom: 16px;
+  transition: border-color 0.2s;
+}
+
+#name-input:focus {
+  border-color: #b8960c;
+  box-shadow: 0 0 8px rgba(184, 150, 12, 0.3);
+}
+
+#name-input::placeholder {
+  color: rgba(139, 115, 32, 0.4);
+}
+
+#start-btn {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 36px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #c9a84c, #b8960c);
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  letter-spacing: 4px;
+}
+
+#start-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 16px rgba(184, 150, 12, 0.4);
+}
+
+/* 状态面板 */
+#status-panel {
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(184, 150, 12, 0.15);
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 20px;
+  margin-bottom: 20px;
+  text-align: left;
+  backdrop-filter: blur(6px);
+}
+
+#status-panel .stat:first-child {
+  grid-column: 1 / -1;
+  text-align: center;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  opacity: 0.6;
+  display: block;
+  color: #7a6b50;
+}
+
+.stat-value {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #b8960c;
+}
+
+.stat-bar {
+  width: 100%;
+  height: 6px;
+  background: rgba(184, 150, 12, 0.1);
+  border-radius: 3px;
+  margin-top: 4px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+.bar-fill.power {
+  background: linear-gradient(90deg, #c9a84c, #e6c65a);
+  width: 50%;
+}
+
+.bar-fill.faith {
+  background: linear-gradient(90deg, #d4af37, #f0d060);
+  width: 30%;
+}
+
+/* 祈祷框 */
+#prayer-box {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(184, 150, 12, 0.2);
+  border-radius: 12px;
+  padding: 24px 20px;
+  margin-bottom: 20px;
+  animation: fadeIn 0.4s ease;
+  backdrop-filter: blur(6px);
+}
+
+#prayer-icon {
+  font-size: 2.5rem;
+  margin-bottom: 8px;
+}
+
+#prayer-text {
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: #4a4035;
+}
+
+/* 选择按钮 */
+#choices {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.choice-btn {
+  flex: 1;
+  padding: 12px 8px;
+  font-size: 0.95rem;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+}
+
+.choice-btn:hover {
+  transform: translateY(-2px);
+}
+
+.choice-btn.bless {
+  background: linear-gradient(135deg, #d4af37, #c9a84c);
+  color: #fff;
+}
+
+.choice-btn.bless:hover {
+  box-shadow: 0 4px 16px rgba(212, 175, 55, 0.4);
+}
+
+.choice-btn.ignore {
+  background: linear-gradient(135deg, #bbb5a7, #a09882);
+  color: #fff;
+}
+
+.choice-btn.ignore:hover {
+  box-shadow: 0 4px 16px rgba(160, 152, 130, 0.4);
+}
+
+.choice-btn.punish {
+  background: linear-gradient(135deg, #c47a5a, #a85a3a);
+  color: #fff;
+}
+
+.choice-btn.punish:hover {
+  box-shadow: 0 4px 16px rgba(168, 90, 58, 0.4);
+}
+
+.choice-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* 反馈 */
+#feedback {
+  padding: 12px 16px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  font-size: 0.95rem;
+  animation: slideUp 0.3s ease;
+}
+
+#feedback.bless-feedback {
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: #8b7320;
+}
+
+#feedback.ignore-feedback {
+  background: rgba(160, 152, 130, 0.12);
+  border: 1px solid rgba(160, 152, 130, 0.3);
+  color: #6b6355;
+}
+
+#feedback.punish-feedback {
+  background: rgba(168, 90, 58, 0.12);
+  border: 1px solid rgba(168, 90, 58, 0.3);
+  color: #a85a3a;
+}
+
+#feedback.event-feedback {
+  background: rgba(184, 150, 12, 0.12);
+  border: 1px solid rgba(184, 150, 12, 0.3);
+  color: #8b7320;
+}
+
+/* 日志 */
+#log-section {
+  text-align: left;
+  margin-top: 8px;
+}
+
+#log-section h3 {
+  font-size: 1rem;
+  margin-bottom: 8px;
+  color: #b8960c;
+}
+
+#log {
+  max-height: 180px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+#log::-webkit-scrollbar {
+  width: 4px;
+}
+
+#log::-webkit-scrollbar-thumb {
+  background: rgba(184, 150, 12, 0.2);
+  border-radius: 2px;
+}
+
+.log-entry {
+  font-size: 0.82rem;
+  padding: 6px 10px;
+  margin-bottom: 4px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.4);
+  color: #5a5040;
+  animation: fadeIn 0.3s ease;
+}
+
+.log-entry .log-day {
+  color: #b8960c;
+  font-weight: bold;
+}
+
+/* 游戏结束 */
+#gameover-screen {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(184, 150, 12, 0.2);
+  border-radius: 16px;
+  padding: 32px 24px;
+  backdrop-filter: blur(8px);
+}
+
+#gameover-screen h2 {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+  color: #b8960c;
+}
+
+#gameover-screen p {
+  margin-bottom: 16px;
+  line-height: 1.5;
+  color: #5a5040;
+}
+
+#gameover-stats {
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+  opacity: 0.8;
+  color: #7a6b50;
+}
+
+#gameover-screen button {
+  padding: 10px 32px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #c9a84c, #b8960c);
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+
+#gameover-screen button:hover {
+  transform: scale(1.05);
+}
+
+/* 动画 */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+.pulse {
+  animation: pulse 0.4s ease;
+}
+
+.stat-flash {
+  animation: statFlash 0.5s ease;
+}
+
+@keyframes statFlash {
+  0% { color: #b8960c; }
+  30% { color: #e6c65a; transform: scale(1.2); }
+  100% { color: #b8960c; transform: scale(1); }
+}

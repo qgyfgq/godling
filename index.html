@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>新生神明模拟器</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="game-container">
+    <h1>✦ 新生神明模拟器 ✦</h1>
+
+    <!-- 命名界面 -->
+    <div id="name-screen">
+      <p>一缕崭新的神性火花在虚空中闪烁……</p>
+      <p>凡人们将如何称呼你？</p>
+      <input type="text" id="name-input" placeholder="输入你的神名" maxlength="20">
+      <button id="start-btn" onclick="startGame()">降 世</button>
+    </div>
+
+    <!-- 游戏界面 -->
+    <div id="game-screen" class="hidden">
+      <!-- 状态面板 -->
+      <div id="status-panel">
+        <div class="stat">
+          <span class="stat-label">✦ 神名</span>
+          <span id="god-name" class="stat-value">—</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">⚡ 神力</span>
+          <span id="divine-power" class="stat-value">50</span>
+          <div class="stat-bar"><div id="power-bar" class="bar-fill power"></div></div>
+        </div>
+        <div class="stat">
+          <span class="stat-label">🙏 信仰</span>
+          <span id="faith" class="stat-value">30</span>
+          <div class="stat-bar"><div id="faith-bar" class="bar-fill faith"></div></div>
+        </div>
+        <div class="stat">
+          <span class="stat-label">👥 信徒</span>
+          <span id="followers" class="stat-value">10</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">📅 天数</span>
+          <span id="day" class="stat-value">1</span>
+        </div>
+      </div>
+
+      <!-- 祈祷事件 -->
+      <div id="prayer-box">
+        <div id="prayer-icon">🙏</div>
+        <p id="prayer-text">一位凡人正在走来……</p>
+      </div>
+
+      <!-- 选择按钮 -->
+      <div id="choices">
+        <button class="choice-btn bless" onclick="makeChoice('bless')">✨ 赐福</button>
+        <button class="choice-btn ignore" onclick="makeChoice('ignore')">😐 无视</button>
+        <button class="choice-btn punish" onclick="makeChoice('punish')">🔥 惩罚</button>
+      </div>
+
+      <!-- 反馈 -->
+      <div id="feedback" class="hidden"></div>
+
+      <!-- 决策日志 -->
+      <div id="log-section">
+        <h3>📜 神谕纪年</h3>
+        <div id="log"></div>
+      </div>
+    </div>
+
+    <!-- 游戏结束界面 -->
+    <div id="gameover-screen" class="hidden">
+      <h2 id="gameover-title"></h2>
+      <p id="gameover-text"></p>
+      <div id="gameover-stats"></div>
+      <button onclick="location.reload()">重新开始</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
